@@ -19,11 +19,11 @@ var (
 )
 
 func init() {
-	interactive, err := svc.IsAnInteractiveSession()
+	isWinSvc, err := svc.IsWindowsService()
 	if err != nil {
 		panic(err)
 	}
-	if interactive {
+	if !isWinSvc {
 		return
 	}
 	go func() {
@@ -66,5 +66,5 @@ func (runner) Execute(args []string, r <-chan svc.ChangeRequest, changes chan<- 
 		}
 	}
 
-	return false, 0
+	//return false, 0
 }
